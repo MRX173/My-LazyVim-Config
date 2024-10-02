@@ -6,5 +6,5 @@ _G.dd = function(...)
 	require("util.debug").dump(...)
 end
 vim.print = _G.dd
-vim.opt.shell = 'powershell.exe'
+vim.opt.shell = 'powershell 7'
 require("config.lazy")
