@@ -25,6 +25,7 @@ require("lazy").setup({
 				},
 			},
 		},
+<<<<<<< HEAD
  {
     "neovim/nvim-lspconfig",
     config = function()
@@ -68,6 +69,9 @@ require("lazy").setup({
     end,
 },
   { 
+=======
+    { 
+>>>>>>> 5497deca27bacde434490196a2b052946cf3b034
         'nvim-telescope/telescope-fzf-native.nvim', 
         build = 'cmake -S. -Bbuild && cmake --build build',  -- or 'make' if you installed it
         shell = 'cmd.exe'  -- Specify the shell if needed
