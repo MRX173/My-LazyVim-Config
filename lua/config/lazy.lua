@@ -25,7 +25,53 @@ require("lazy").setup({
 				},
 			},
 		},
+<<<<<<< HEAD
+ {
+    "neovim/nvim-lspconfig",
+    config = function()
+        -- LSP configuration for C#
+        require("lspconfig").omnisharp.setup({
+            cmd = { "dotnet", "C:/Users/moham/AppData/Local/nvim-data/mason/packages/omnisharp/libexec/OmniSharp.dll" }, -- Ensure the OmniSharp server is installed
+            root_dir = require("lspconfig").util.root_pattern(".git", ".sln", ".csproj"), -- Automatically finds the project root
+            handlers = {
+                ["textDocument/definition"] = require('omnisharp_extended').handler, -- Custom handler for go-to definition
+            },
+            capabilities = require('cmp_nvim_lsp').default_capabilities(), -- Enable auto-completion capabilities
+
+            settings = { -- OmniSharp specific settings
+                FormattingOptions = {
+                    EnableEditorConfigSupport = true, -- Enables support for reading code style from .editorconfig
+                    OrganizeImports = false, -- Specifies whether to group/sort 'using' directives on formatting
+                },
+                MsBuild = {
+                    LoadProjectsOnDemand = false, -- Load projects for files that were opened in the editor
+                },
+                RoslynExtensionsOptions = {
+                    EnableAnalyzersSupport = false, -- Support for roslyn analyzers
+                    EnableImportCompletion = false, -- Show unimported types in completion lists
+                },
+                Sdk = {
+                    IncludePrereleases = true, -- Include preview versions of the .NET SDK
+                },
+            },
+
+            on_attach = function(client, bufnr)
+                print("OmniSharp LSP attached") -- Add a debug message
+                local function buf_set_keymap(...)
+                    vim.api.nvim_buf_set_keymap(bufnr, ...)
+                end
+                local opts = { noremap = true, silent = true }
+
+                -- Map <leader>ca to code actions
+                buf_set_keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+            end,
+        })
+    end,
+},
+  { 
+=======
     { 
+>>>>>>> 5497deca27bacde434490196a2b052946cf3b034
         'nvim-telescope/telescope-fzf-native.nvim', 
         build = 'cmake -S. -Bbuild && cmake --build build',  -- or 'make' if you installed it
         shell = 'cmd.exe'  -- Specify the shell if needed
